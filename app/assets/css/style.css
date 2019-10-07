@@ -2,8 +2,21 @@ body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
 }
-
-.nav-bar {
+dl, ol, ul {
+    margin-top: 0;
+    padding: 0;
+    margin: 0;
+    margin-top: 0;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+a {
+    color: #333;
+    text-decoration: none;
+    background-color: transparent;
+}
+/*.nav-bar {
     list-style-type: none;
     text-align: center;
 }
@@ -38,7 +51,7 @@ ul.dropdown-custom {
 
 ul.dropdown-custom li {
     display: block;
-    padding: 5px 0px 10px 5px;    /* min-width: 160px; */
+    padding: 5px 0px 10px 5px;  
     min-width: 160px;
     text-align: center;
     float: none;
@@ -47,7 +60,7 @@ ul.dropdown-custom li {
 .nav-bar li:hover > ul.dropdown-custom {
     display: block;
 }
-
+*/
 .dropdown-sub-custom > ul.dropdown-custom {
     left: 131%;
     margin-top: -23px;
@@ -58,7 +71,6 @@ ul.dropdown-custom li {
     display: block;
 }
 
-/* products */
 .product-item-image img {
     height: 100%;
     max-height: 250px;
@@ -108,3 +120,55 @@ ul.dropdown-custom li {
     transform: scale(2);
     background: #9999997a;
 }
+nav.nav-bar-main > ul {
+    list-style: none;
+    display: flex;
+    line-height: 70px;
+}
+nav.nav-bar-main > ul > li {
+    flex-grow: 1;
+    text-align: center;
+    position: relative;
+}
+nav.nav-bar-main > ul > li:not(.logo) {
+    background: #fd79a8;
+}
+nav.nav-bar-main > ul > li.logo > img{
+    max-height: 70px;
+    
+}
+nav.nav-bar-main > ul > li > a{
+    display: block;
+    width: 100%;
+}
+nav.nav-bar-main > ul > li:hover > a {
+    background: #2f3542;
+    color: white;
+    text-decoration: none;
+}
+ul.dropdown-main {
+    opacity: 0;
+    box-shadow: -1px 2px 2px 0px #dedede;
+    position: fixed;
+    width: 10%;
+    list-style: none;
+    left: 0;
+    display: flex;
+    background: #f8f8f8;
+    color: #333;
+    left: 50%;
+    transform: translate(-50%, 0);
+        transition: 0s;
+}
+ul.dropdown-main > li {
+        flex: 1 0 auto;
+    
+}
+nav.nav-bar-main > ul > li:hover > ul.dropdown-main {
+    opacity: 1;
+    transition: 0.8s ;
+    width: 90%;
+}
+
+
+        
