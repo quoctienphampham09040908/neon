@@ -1,0 +1,110 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
+
+.nav-bar {
+    list-style-type: none;
+    text-align: center;
+}
+
+ul.nav-bar li {
+    padding: 0px 25px 0px 0px;
+    display: inline-block;
+    position: relative;
+}
+
+.nav-bar li a {
+    text-decoration: none;
+    color: #555555;
+}
+
+.nav-bar {
+    color: #555555;
+}
+
+.nav-bar li:hover > ul.dropdown-custom {
+    display: block;
+}
+
+ul.dropdown-custom {
+    position: absolute;
+    padding: 0;
+    margin-left: -50px;
+    display: block;
+    background: #5555551c;
+    box-shadow: 0px 1px 2px #80808078;
+}
+
+ul.dropdown-custom li {
+    display: block;
+    padding: 5px 0px 10px 5px;    /* min-width: 160px; */
+    min-width: 160px;
+    text-align: center;
+    float: none;
+}
+
+.nav-bar li:hover > ul.dropdown-custom {
+    display: block;
+}
+
+.dropdown-sub-custom > ul.dropdown-custom {
+    left: 131%;
+    margin-top: -23px;
+    display: none;
+}
+
+.dropdown-sub-custom:hover > .dropdown-custom {
+    display: block;
+}
+
+/* products */
+.product-item-image img {
+    height: 100%;
+    max-height: 250px;
+    max-height: auto;
+    width: 100%;
+}
+
+.product-item-heading .title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.product-item-heading .description {
+    text-align: justify;
+    width: auto;
+}
+
+.product-item-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-hover {
+
+    /* display: flex; */
+    position: absolute;
+    left: 50;
+    text-align: center;    /* text-align: justify; */
+    justify-content: center;
+    right: 0;
+    bottom: 0;
+    top: 25%;   /* background:#999999;*/
+
+    /* transform: translate(50%, 0%); */
+    opacity: 0;    /* transition: all 1.3s; */
+    width: 100%;    /* transform: translate(-50%, -50%); */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 50%;
+    transition: 1s;
+}
+
+.product-item-image:hover > .icon-hover {
+    opacity: 1;
+    transform: scale(2);
+    background: #9999997a;
+}
