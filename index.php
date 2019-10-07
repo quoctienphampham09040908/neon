@@ -19,6 +19,6 @@
 </head>
 <body>
   <?= $_REQUEST['param-1'] ?>
-  <?= $_REQUEST['p'] ?>
+  <?= $_REQUEST['p'] ?>1
 </body>
 </html>
