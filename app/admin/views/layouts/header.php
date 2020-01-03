@@ -1,13 +1,7 @@
 <header>
-  <div class="container">
   <?php include _view.'layouts/banner.php' ?>
-  </div>
-  <div class="container">
 	<?php include _view.'layouts/menu-center.php' ?>
-  </div>
-  <div class="container">
 	<?php include _view.'layouts/menu-mobile.php' ?>
-  </div>
 </header>
 <!-- <script>
 	   var target = $('div.item-nav > div.thumb img');

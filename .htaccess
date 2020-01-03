@@ -11,8 +11,8 @@ Options +Indexes
 
 # RewriteRule ^sitemap.xml sitemap.php [L]
 
-# RewriteRule ^admin$ admin/index.php [L]
-# RewriteRule ^admin/(.*)$ admin/$1 [L]
+RewriteRule ^admin$ app/admin/index.php [L]
+RewriteRule ^admin/(.*)$ app/admin/$1 [L]
 
 # RewriteRule ^404.html 404.html [L]
 # RewriteRule ^admin/404.html 404.html [L]

@@ -1,0 +1,112 @@
+/*.user_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+/*.flex-center{
+	display: -webkit-flex;
+	display:     -ms-flex;
+	display:         flex;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}*/
+.user_login{
+	display: block;
+	margin:0 auto;
+}
+.nav_left ul{
+	padding:0;
+	list-style-type: none;
+}
+
+/* collapse transition start */
+.collapse {
+  visibility: hidden;
+}
+.collapse.show {
+  visibility: visible;
+  display: block;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+.collapsing.width {
+  -webkit-transition-property: width, visibility;
+  transition-property: width, visibility;
+  width: 0;
+  height: auto;
+}
+/* collapse transition end */
+.btn-dark-custom {
+    min-width: 100%;
+}
+.nav_left_childx2 {
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.1),0 1px 5px 0 rgba(0,0,0,0.1) !important;
+    background: #ffffff;
+}
+.panel-body-ad {
+    min-height: 500px;
+    width: 100%;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.1),0 1px 5px 0 rgba(0,0,0,0.1) !important;
+    background: #ffffff;
+}
+.nav_left_childx2{
+	padding: 0;
+	border-radius: 5px;
+}
+.nav_left_childx2 li a{
+	text-decoration: none;
+	color:#343a40;
+}
+ul.nav_left_childx2 li a{
+	display: block;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-bottom: 10px;
+	position: relative;
+}
+ul.nav_left_childx2 li:hover a{
+
+	background:#343a40;
+	color:#fff;
+}
+.panel-body-ad > .title {
+    padding-left: 10px;
+    background: #343a40;
+    box-shadow: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.18);
+}
+.panel-body-ad > .title span {
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 3px;
+}
+.admin_current_box .heading{
+	text-align: center;
+}
+.admin_current_box .heading .user_name{
+    font-size: 18px;
+    font-weight: 500;
+}
+.admin_current_box .thumb img{
+	height: 100px;
+}
+.admin_current_box {
+    box-shadow: 0px 0.2px 1px 0.2px rgba(0, 0, 0, 0.73);
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.thumb_avatar  img{
+	height: 160px;
+	width: auto;
+}

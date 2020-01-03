@@ -1,0 +1,117 @@
+array(2) { ["user"]=> array(3) { ["id"]=> string(12) "82767243@N08" ["nsid"]=> string(12) "82767243@N08" ["username"]=> array(1) { ["_content"]=> string(14) "tiger_quoctien" } } ["stat"]=> string(2) "ok" } Tiêu đề là !
+
+
+<?
+
+//   include_once _lib."phpflickr/phpFlickr.php";;
+// $f = new phpFlickr("fda9a9cdca95530683912b946e1cd7e8");
+
+// $recent = $f->photos_getRecent();
+
+
+// foreach ($recent['photos']['photo'] as $photo) {
+
+//     $owner = $f->people_getInfo($photo['owner']);
+
+
+//     echo "<a href='http://www.flickr.com/photos/" . $photo['owner'] . "/" . $photo['id'] . "/'>";
+//     echo $photo['title'];
+//     echo "</a> Owner: ";
+//     echo "<a href='http://www.flickr.com/people/" . $photo['owner'] . "/'>";
+//     echo $owner['username'];
+//     echo "</a><br>";
+// } 
+#
+# xây dựng URL API để gọi
+#
+
+
+
+
+
+
+$params = array(
+  'api_key' => 'fda9a9cdca95530683912b946e1cd7e8',
+   'method'  => 'flickr.people.getPhotos',
+   'user_id' => '82767243@N08',
+  // 'timeframe'  => '4h',
+  // 'per_page' => '9',
+  // 'page' => '0',
+  'format'  => 'php_serial',
+);
+  // 'secret'  => '86befe1a07b3fd8a',
+
+$encoded_params = array();
+
+foreach ($params as $k => $v){
+
+  $encoded_params[] = urlencode($k).'='.urlencode($v);
+}
+
+
+#
+# gọi API và giải mã phản hồi
+#
+
+$url = "https://api.flickr.com/services/rest/?".implode('&', $encoded_params);
+
+$rsp = file_get_contents($url);
+
+$rsp_obj = unserialize($rsp);
+
+
+#
+# hiển thị tiêu đề ảnh (hoặc lỗi nếu không thành công)
+#
+
+if ($rsp_obj['stat'] == 'ok'){
+  var_dump($rsp_obj);
+  $photo_title = $rsp_obj['photo']['title']['_content'];
+
+  echo "Tiêu đề là $photo_title!";
+}else{
+
+  echo "Cuộc gọi không thành công!";
+}
+
+?>
+  <div class="container">
+    <div class="row">
+  <? foreach ($rsp_obj['photos']['photo']  as $key => $photo) { ?>
+    
+    <?php 
+            $params = array(
+          'api_key' => 'fda9a9cdca95530683912b946e1cd7e8',
+           'method'  => 'flickr.photos.getSizes',
+           'photo_id' => $photo['id'],
+          'format'  => 'php_serial',
+        );
+
+        $encoded_params = array();
+
+        foreach ($params as $k => $v){
+
+          $encoded_params[] = urlencode($k).'='.urlencode($v);
+        }
+
+        $url = "https://api.flickr.com/services/rest/?".implode('&', $encoded_params);
+
+        $rsp = file_get_contents($url);
+
+        $rsp_obj = unserialize($rsp);
+        var_dump($rsp_obj);
+
+       
+     ?>
+
+
+
+
+   <div class="col-md-4">
+    <!--  <img class="thumbnail" src="http://www.flickr.com/tiger_quoctien/<?=  $photo['id'] . "/" ?>" alt=""> -->
+     <img class="thumbnail" src="<?= $rsp_obj['sizes']['size'][1]['source'] ?>" alt="">
+
+   </div>
+  <? } ?>
+  </div>
+  </div>
