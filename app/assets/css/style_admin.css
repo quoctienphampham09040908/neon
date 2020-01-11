@@ -110,3 +110,40 @@ ul.nav_left_childx2 li:hover a{
 	height: 160px;
 	width: auto;
 }
+.btn-dark-custom:hover, .btn-dark-custom:focus,.btn-dark-custom:active{
+  box-shadow: none;
+
+}
+.form-box {
+    padding: 10px 0px;
+    display: block;
+    margin:0 auto;
+}
+.form-box label{
+  font-weight: 700px;
+  font-size:19px;
+}
+table.table_custom_admin {
+    width: 100%;
+}
+table.table_custom_admin thead {
+  background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+table.table_custom_admin thead td{
+  padding: 10px 0px;
+}
+table.table_custom_admin tbody td{
+text-align: center;
+}
+/*table.table_custom_admin tbody > tr:nth-child(even){background-color: #333}*/
+/*table.table_custom_admin tbody > tr{
+  position: relative;
+  padding-bottom: 10px;
+}
+table.table_custom_admin tbody > tr:before{
+  position: absolute;
+  content: "";
+  border-bottom: 1px solid #dedede;
+}*/

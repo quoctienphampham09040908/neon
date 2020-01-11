@@ -1,16 +1,26 @@
 <?php  
-global $view,$com,$db;
+global $view,$com,$db,$act,$type,$id;
 $com = $_REQUEST['com'];
 $act = $_REQUEST['act'];
+$type = $_REQUEST['type'];
+$id = $_REQUEST['id'];
 $db = new database($config['database']);
 $current_user = NULL;
  if (!isset($_COOKIE['admin'])) {
  	login();
  }else{
     checkLogin();
- 	if (empty($com)) {
- 		$com = 'index';
- 	}
+        switch ($com) {
+              case 'category':
+                   if (empty($act)) {
+                       echo "<script>window.location.href='".$config_url."/admin/index.php?com=index'</script>";
+                    }
+               break;
+            default:
+              //$com = "index";
+                break;
+        }
+
  	include_once _controller.$com.".php";
  }
 
@@ -27,7 +37,7 @@ function login(){
 function checkLogin(){
 	global $config_url,$com,$act,$view,$db,$current_user;
 	$db->query("select * from tbl_user where MD5(user_name) = '{$_COOKIE['admin']}'");
-    $current_user = $db->fetch_array();
+  $current_user = $db->fetch_array();
 }
 
 ?>

@@ -12,6 +12,7 @@
   include_once _lib."class.database.php";
   //include_once _lib."pagination.php";
   include_once _lib."file_requick_admin.php";
+  include_once _lib."function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +28,10 @@
     <link rel="stylesheet" href="../app/assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="../app/assets/css/swiper/swiper.min.css">
     <link rel="stylesheet" href="../app/assets/css/style_admin.css">
+
+    <script src="../app/assets/ckeditor/ckeditor.js"></script>
+    <script src="../app/assets/ckfinder/ckfinder.js"></script>
+
 </head>
 <body>
  <!--  <div class="container">
@@ -54,3 +59,60 @@
   </div>
 </body>
 </html>
+<!--   <script>
+function call_image() {
+var finder = new CKFinder();
+finder.basePath = '../';
+finder.selectActionFunction = SetFileField;
+finder.popup();
+}
+function SetFileField(fileUrl) {
+  $('input[name="thumbnail"]').val(fileUrl);
+$('#thumbnail').attr("src",fileUrl);
+}
+CKEDITOR.replace( 'editor' );
+
+</script> -->
+<script>
+    $(document).ready(function() {
+    $(".editor").each(function() {
+      CKEDITOR.replace( this.id, {
+        baseHref: "<?= getBaseURL(true) ?>",
+        contentsCss: ['<?=getBaseURL(true)?>app/assets/css/bootstrap.min.css'],
+        // enterMode: CKEDITOR.ENTER_BR,
+        autoParagraph: false,
+        qtBorder: '1',
+        qtStyle: { 'border-collapse' : 'collapse' },
+        qtClass: 'table_ckeditor',
+        qtCellPadding: '5',
+        qtCellSpacing: '5',
+        width: '100%',
+        height: 350,
+        removePlugins : 'elementspath',
+        filebrowserImageBrowseUrl: '<?=getBaseURL(true)?>app/assets/ckfinder/ckfinder.html',
+        filebrowserFlashBrowseUrl: '<?=getBaseURL(true)?>app/assets/ckfinder/ckfinder.html',
+        filebrowserLinkBrowseUrl: '<?=getBaseURL(true)?>app/assets/ckfinder/ckfinder.html'
+      });
+    });
+    $('*[disabled]').each(function() {
+      $('form').append('<input name="'+$(this).attr('name')+'" type="hidden" value="'+$(this).val()+'">');
+    });
+  });
+  function openBrowser(imgid, inputid, rf=undefined, cb=undefined) {
+    var selectedImage = function(fileUrl) {
+      if(rf == undefined || rf == false) {
+        $(imgid).attr("src", "../" + fileUrl);
+        $(inputid).val(fileUrl);
+        if(cb != undefined || cb == false) {
+          setTimeout(function() { cb(fileUrl); }, 100);
+        }
+      }
+      else {
+        rf(fileUrl);
+      }
+    };
+    var finder = new CKFinder();
+    finder.selectActionFunction = selectedImage;
+    finder.popup();
+  }
+</script>

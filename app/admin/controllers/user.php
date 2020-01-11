@@ -32,13 +32,31 @@ if (isset($_POST['user_name']) && isset($_POST['password']) && !isset($_COOKIE['
 	               	$user = $current_user;
 	               }
 	           }else{
-		           $info = pathinfo($_FILES['avatar']['name']);
-				   $ext = $info['extension']; 
-				   $newname = "newname.".$ext; 
-				    $newname = $_FILES['avatar']['name']; 
-					$target = '../'._storage.$newname;
-					move_uploaded_file( $_FILES['avatar']['tmp_name'], $target);
-	           		
+                    
+                    $db->query("select * from tbl_user where user_name = '{$_POST['user_name']}'");
+                    $user = $db->fetch_array();
+
+	           	   if (!empty($_FILES['avatar']['name'])) {
+                      
+                      unlink('../'._storage.$user['thumbnail']);
+
+	           	   	  $info = pathinfo($_FILES['avatar']['name']);
+					   $ext = $info['extension']; 
+					   // $newname = "newname.".$ext; 
+					   $newname = $_FILES['avatar']['name']; 
+					   $target = '../'._storage.$newname;
+					   move_uploaded_file( $_FILES['avatar']['tmp_name'], $target);
+	           	   }
+	           	   $db->setTable("user");
+	           	   $db->setCondition("where id = '{$user['id']}' ");
+	           	   $data = array();
+	           	   $data['password'] = md5($_POST['password']);
+	           	   $data['thumbnail'] = $newname;
+	           	   $db->update($data);
+
+	           	   echo "<script>window.location.href='".$config_url."/admin/index.php?com={$com}&act={$act}'</script>";
+
+
 	           }
 
 			break;

@@ -8,13 +8,13 @@
 			<input type="hidden" name="save">
 			<div class="col-md-6 d-block mx-auto">
 				<label class="thumb_avatar d-flex justify-content-center" for="avatar">
-					<img height="40" width="40" src="<?= _asset.'image/avatar_default.png' ?>" alt="">
+					<img height="40" width="40" src="<?= !empty($user['thumbnail'])? _storage.$user['thumbnail']  : _asset.'image/avatar_default.png'; ?>" alt="">
 				</label>
 				<input id="avatar" name="avatar" type="file" class="d-none">
 			</div>
 			<div class="col-md-6 d-block mx-auto">
 				<label for="user_name">User name</label>
-				<input id="user_name" class="form-control" type="text" name="user_name" value="<?= $user['user_name'] ?>">
+				<input readonly id="user_name" class="form-control" type="text" name="user_name" value="<?= $user['user_name'] ?>">
 			</div>
 			<div class="col-md-6 d-block mx-auto">
 				<label for="password">Password</label>
