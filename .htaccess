@@ -5,6 +5,8 @@
 
 	RewriteRule ^storage/(.*).php$ 404.html [L]
 	RewriteRule ^lib/(.*).php$ 404.html [L]
+	RewriteRule ^(((\w+)/?)*)/(\w+).scss$ lib/scss.php/$4.scss [L]
+
 
 
 	Options +Indexes

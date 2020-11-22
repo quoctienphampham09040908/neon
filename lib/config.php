@@ -4,13 +4,13 @@
 
 // if(!defined('_lib')) die("Error");
 
-// $http = "http://";
+ $http = "http://";
 
 // if($_SERVER['HTTPS'] == "on")
 
 // 	$http = "https://";
 
-// $config_url = $http.$_SERVER["SERVER_NAME"];
+ $config_url = $http.$_SERVER["SERVER_NAME"];
 
 
 

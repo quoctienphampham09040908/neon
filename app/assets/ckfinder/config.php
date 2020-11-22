@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * CKFinder Configuration File
  *
@@ -78,7 +79,7 @@ $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
     'baseUrl'      => $baseRes,
-    'root'         => '../../../../../../storage/', // Can be used to explicitly set the CKFinder user files directory.
+     'root'         => '../../../../../../storage/', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0777,
     'filesystemEncoding' => 'UTF-8',
@@ -106,6 +107,15 @@ $config['resourceTypes'][] = array(
     'deniedExtensions'  => '',
     'backend'           => 'default'
 );
+// $config['resourceTypes'][] = array(
+//     'name'              => 'product',
+//     'directory'         => '',
+//     'maxSize'           => 0,
+//     'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+//     'deniedExtensions'  => '',
+//     'backend'           => 'default'
+// );
+
 
 
 // var_dump($_REQUEST);
@@ -120,7 +130,7 @@ $config['roleSessionVar'] = 'CKFinder_UserRole';
 $config['accessControl'][] = array(
     'role'                => '*',
     'resourceType'        => '*',
-    'folder'              => '/',
+    'folder'              => '',
 
     'FOLDER_VIEW'         => true,
     'FOLDER_CREATE'       => true,

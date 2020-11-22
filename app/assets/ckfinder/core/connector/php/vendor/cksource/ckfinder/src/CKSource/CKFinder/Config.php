@@ -81,6 +81,7 @@ class Config
      */
     protected function mergeDefaultOptions($options)
     {
+      
         $defaults = array(
             'authentication' => function () {
                 return false;

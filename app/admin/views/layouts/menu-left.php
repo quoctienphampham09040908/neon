@@ -1,52 +1,60 @@
-<nav class="nav_left mt-5">
-	<button  class="btn btn-dark btn-dark-custom"  data-toggle="collapse" data-target="#current_user"><i class="fas fa-user"></i></button>
-	<div id="current_user" class="nav_left_childx2 collapse">
-		<div class="admin_current_box">
-			<div class="thumb d-flex justify-content-center align-items-center">
-				<img class="img-thumbnail" src="<?= _storage."admin_avatar.jpg" ?>" alt="">
-			</div>
-			<div class="heading">
-				<span class="user_name">Dép Lào<!-- <?= $current_user['user_name'] ?> --></span>
-				<span class="description_of_user">
-					
+<div id="sidebar-admin" role="tablist" aria-multiselectable="true">
+	<div class="w-100">
+		<div class="dropdown open">
+			<button class="not-focusable btn current-user-button-toggle  dropdown-toggle d-flex" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div>
+					<img src="../" alt="">
+				</div>
+				<span class="current-user-name text-uppercase">
+					<?php echo $current_user['user_name'] ?>
 				</span>
-			</div>
-			<div class="d-flex justify-content-center align-items-center">
-				<a class="btn btn-primary mr-1" href="<?=$config_url?>/admin/index.php?com=user&act=change">
-					<i class="fas fa-exchange-alt"></i>
-				</a>
-				<a class="btn btn-danger ml-1" href=" <?=$config_url?>/admin/index.php?com=user&act=logout"><i class="fas fa-sign-out-alt"></i></a>
+			</button>
+			<div class="dropdown-menu w-100 rounded-0 justify-content-center flex-column mt-0" aria-labelledby="triggerId">
+				<a class="dropdown-item d-flex justify-content-center" href="#">Setting</a>
+				<a class="dropdown-item d-flex justify-content-center " href="./index.php?com=user&act=login">Logout</a>
 			</div>
 		</div>
 	</div>
-	<br>
-	<ul class="nav_left_child">
-		<li class="mt-1">
-			<button  class="btn btn-dark btn-dark-custom"  data-toggle="collapse" data-target="#category_">Quản lý danh mục</button>
-			<ul id="category_" class="nav_left_childx2 collapse">
-				<li>
-					<a href="<?= $config_url?>/admin/index.php?com=category&act=edit">Thêm mới</a>
-				</li>
-				<li>
-					<a href="<?= $config_url?>/admin/index.php?com=category&act=list">Tất cả danh mục</a>
-				</li>
-			</ul>
-		</li>
-		<li class="mt-1">
-			<button class="btn btn-dark btn-dark-custom"  data-toggle="collapse" data-target="#product_">Product Manager</button>
-			<ul id="product_" class="nav_left_childx2 collapse">
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-			</ul>
-		</li>
-		<li class="mt-1">
-			<button class="btn btn-dark btn-dark-custom"  data-toggle="collapse" data-target="#post_">Post Manager</button>
-			<ul id="post_" class="nav_left_childx2 collapse">
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-			</ul>
-		</li>
-	</ul>
-</nav>
+	<?php foreach ($list_com as $com_name =>  $r_com) { ?>
+		<?php if ($r_com['list-type']) { ?>
+			<div class="card sidebar-card-category rounded-0">
+				<div class="card-header" role="tab" id="<?= $com_name ?>">
+					<h5 class="mb-0 ">
+						<a class=" d-flex w-100 <?= $com == $com_name ? 'active' : 'collapsed '  ?> " data-toggle="collapse" data-parent="#sidebar-admin" href="#<?= $com_name ?>_content" aria-expanded="<?= $com == $com_name ? 'true' : 'false'  ?>" aria-controls="<?= $com_name ?>_content">
+							<span class="w-100 d-d-flex">
+								<?php echo $r_com['icon'] ?>
+								<?php echo $r_com['title'] ?>
+							</span>
+							<span>
+								<i class="far fa-caret-square-down"></i>
+							</span>
+						</a>
+					</h5>
+				</div>
+				<div id="<?= $com_name ?>_content" class="collapse in <?= $com == $com_name ? 'show' : ''  ?>" role="tabpanel" aria-labelledby="<?= $com_name ?>">
+					<?php if (is_array($r_com['type']) && !empty($r_com['type'])) { ?>
+						<?php foreach ($r_com['type'] as $type_item =>  $r_type) { ?>
+							<div class="card-body <?= $com == $com_name &&  $type_item == $type ? 'active' : '' ?>">
+								<a href="./index.php?com=<?= $com_name ?>&type=<?= $type_item ?>&act=<?= $r_type['act'] ?>"><?= $r_type['icon'] ?> <?= $r_type['title'] ?></a>
+							</div>
+						<?php } ?>
+					<?php	} ?>
+				</div>
+			</div>
+		<?php } else { ?>
+			<div class="card sidebar-card-category rounded-0">
+				<div class="card-header" role="tab" id="<?= $com_name ?>">
+					<h5 class="mb-0 ">
+						<a class=" d-flex w-100 <?= $com == $com_name ? 'active' : ' '  ?>" href="./index.php?com=<?= $com_name ?>&act=<?= $r_com['act'] ?>">
+							<span class="w-100 d-d-flex">
+								<?php echo $r_com['icon'] ?>
+								<?php echo $r_com['title'] ?>
+							</span>
+
+						</a>
+					</h5>
+				</div>
+			</div>
+		<?php } ?>
+	<?php } ?>
+</div>

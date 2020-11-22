@@ -106,7 +106,8 @@ class Init extends CommandAbstract
             $data->uploadMaxSize = $phpMaxSize;
             $data->uploadCheckImages = !$config->get('checkSizeAfterScaling');
 
-            $requestedType = (string) $request->query->get('type');
+            // $requestedType = (string) $request->query->get('type');
+            $requestedType = 'Images';
 
             foreach ($resourceTypesNames as $resourceTypeName) {
                 if ($requestedType && $requestedType !== $resourceTypeName) {
