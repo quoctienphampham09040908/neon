@@ -8,7 +8,7 @@ $attr['list']['status'] = array(
   'Nổi bật' => array('name' => 'popular'),
 );
 $attr['list']['thumbnail'] = array(
-  'Hình ảnh test' => array('name' => 'thumbnail'),
+  'Hình ảnh test 1' => array('name' => 'thumbnail'),
 );
 // $attr['default']['input'] = array(
 //   'Đường dẫn' => array('name' => "uri", 'type' => "input", "placeholder" => "Nhập đường dẫn..."),
