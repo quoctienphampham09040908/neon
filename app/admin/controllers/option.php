@@ -7,9 +7,9 @@ $attr['list']['status'] = array(
   'Hiển thị' => array('name' => 'enable'),
   'Nổi bật' => array('name' => 'popular'),
 );
-$attr['list']['thumbnail'] = array(
-  'Hình ảnh test' => array('name' => 'thumbnail'),
-);
+// $attr['list']['thumbnail'] = array(
+//   'Hình ảnh' => array('name' => 'thumbnail'),
+// );
 // $attr['default']['input'] = array(
 //   'Đường dẫn' => array('name' => "uri", 'type' => "input", "placeholder" => "Nhập đường dẫn..."),
 //   'Độ ưu tiên' => array('name' => "level", 'type' => "number", "placeholder" => "Nhập độ ưu tiên...")
