@@ -1,267 +1,70 @@
 <?php
-
-if(!defined('_lib')) die("Error");
-
-class database{
-
-	var $db;
-
-	var $result;
-
-	var $insert_id;
-
-	var $sql = "";
-
-	var $refix = "";
-
-
-
-	var $servername;
-
-	var $username;
-
-	var $password;
-
-	var $database;
-
-
-
-	var $table = "";
-
-	var $condition = "";
-
-
-
-	var $error = array();
-
-
-
-	function database($config = array()){
-
-		if(!empty($config)){
-
-			$this->init($config);
-
-			$this->connect();
-
+class Database {
+	private $servername, $username, $password, $database, $refix;
+	private $connect, $result,$table;
+	public function __construct($config = array()) {
+		$this->servername = $config['servername'];
+		$this->username = $config['username'];
+		$this->password = $config['password'];
+		$this->database = $config['database'];
+		$this->refix = $config['refix'];
+	}
+	// public function __destruct(){
+	// 	 echo "Destroy class Database";
+	// }
+	public function connect() {
+		$this->connect = mysqli_connect($this->servername, $this->username, $this->password, $this->database);
+		if ($this->connect->connect_error) {
+			die("Connection failed: " . $this->connect->connect_error);
 		}
+		$this->connect->set_charset("utf8");
+	}
+	function query($sql) {
+		$this->result = $this->connect->query($sql);
+	}
+	function fetch_assoc() {
+		return $this->result->fetch_assoc();
+	}
+	function fetch_array() {
+		return $this->result->fetch_array();
+	}
+	function result_array() {
+		while ($row = $this->result->fetch_array()) {
+		   $row[] = $row;  
+		} 
+
+		return  empty($row) ==  true? false : $row;
 
 	}
-
-
-
-	function init($config = array()){
-
-		foreach($config as $k=>$v)
-
-			$this->$k = $v;
-
+	function setTable($table){
+        $this->table = $table;
 	}
-
-
-
-	function connect(){
-
-		$this->db = @mysql_connect($this->servername, $this->username, $this->password);
-
-
-
-		if( !$this->db){
-
-			die('Could not connect: ' . mysql_error());
-
-		}
-
-
-
-		if( !mysql_select_db($this->database, $this->db)){
-
-			die(mysql_errno($this->db) . ": " . mysql_error($this->db));
-
-			return false;
-
-		}
-
-
-
-		mysql_query('SET NAMES "utf8"',$this->db);
-
-	}
-
-
-
-	function query($sql=""){
-
-		if($sql)
-
-			$this->sql = str_replace('#_', $this->refix, $sql);
-
-		$this->result = mysql_query($this->sql,$this->db);
-
-		if(!$this->result){
-
-			die("syntax error: ".$this->sql);
-
-		}
-
-		return $this->result;
-
-	}
-
-
-
 	function insert($data = array()){
+       if (!empty($data) || !empty($this->table)) {
+           $keys = array_keys($data);
+           $values = array();
+           var_dump($keys);
+           exit();
+           foreach ($data as $value) {
+             	$item = array();
+           	  foreach ($keys as  $value_k) {
+           	  	$item[]= $data[$value_k];
+           	  }
 
-		$key = "";
-
-		$value = "";
-
-		foreach($data as $k => $v){
-
-			$key .= ",`" . $k . "`";
-
-			if($v != "NULL")
-
-				$value .= ",'" . mysql_escape_string($v) . "'";
-
-			else
-
-				$value .= "," . $v;
-
-		}
-
-		if($key{0} == ",") $key{0} = "(";
-
-		$key .= ")";
-
-		if($value{0} == ",") $value{0} = "(";
-
-		$value .= ")";
-
-		$this->sql = "insert into ".$this->refix.$this->table.$key." values ".$value;
-
-		$this->query();
-
-		$this->insert_id = mysql_insert_id();
-
-		return $this->result;
-
+           	  $values[] = '( '.implode(",", $item).' )';
+           }
+           $values = implode(",", $values);
+           $keys = '( '.implode(",", $keys).' )';
+       	   $sql = "insert into {$this->refix}{$this->table} {$keys} values {$values};";
+       	   var_dump($sql);
+       	   exit();
+       	   $this->connect->query($sql);
+       }else{
+       	die(1);
+       }
 	}
-
-
-
-	function update($data = array()){
-
-		$values = "";
-
-		foreach($data as $k => $v){
-
-			if($v != "NULL")
-
-				$values .= ", `" . $k . "` = '" . mysql_escape_string($v)  ."' ";
-
-			else
-
-				$values .= ", `" . $k . "` = " . $v  ." ";
-
-		}
-
-		if($values{0} == ",") $values{0} = " ";
-
-		$this->sql = "update " . $this->refix . $this->table . " set " . $values;
-
-		$this->sql .= $this->condition;
-
-		return $this->query();
-
+	function close() {
+		$this->connect->close();
 	}
-
-
-
-	function delete(){
-
-		$this->sql = "delete from " . $this->refix . $this->table . " " . $this->condition;
-
-		return $this->query();
-
-	}
-
-
-
-	function select($str = "*"){
-
-		$this->sql = "select " . $str;
-
-		$this->sql .= " from " . $this->refix . $this->table;
-
-		$this->sql .= " " . $this->condition;
-
-		return $this->query();
-
-	}
-
-
-
-	function num_rows(){
-
-		return mysql_num_rows($this->result);
-
-	}
-
-
-
-	function fetch_array(){
-
-		return mysql_fetch_assoc($this->result);
-
-	}
-
-
-
-	function result_array(){
-
-		$arr = array();
-
-		while ($row = mysql_fetch_assoc($this->result))
-
-			$arr[] = $row;
-
-		return $arr;
-
-	}
-
-
-
-	function setTable($tbl){
-
-		$this->table = str_replace($this->refix, "", $tbl);
-
-	}
-
-
-
-	function setCondition($condition = ""){
-
-		$this->condition = $condition;
-
-	}
-
-
-
-	function getMaxId($table){
-
-		$this->query(sprintf("select max(id) as maxid from #_%s", $table));
-
-		$result = $this->fetch_array();
-
-		if(in_array(@$result['maxid'], array(0, "0", "", NULL)))
-
-			return 1;
-
-		return intval($result['maxid']) + 1;
-
-	}
-
 }
-
 ?>

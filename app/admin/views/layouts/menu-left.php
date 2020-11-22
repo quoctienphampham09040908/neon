@@ -19,13 +19,15 @@
 			</div>
 		</div>
 	</div>
-	<br>	
+	<br>
 	<ul class="nav_left_child">
 		<li class="mt-1">
 			<button  class="btn btn-dark btn-dark-custom"  data-toggle="collapse" data-target="#category_">Quản lý danh mục</button>
 			<ul id="category_" class="nav_left_childx2 collapse">
 				<li>
 					<a href="<?= $config_url?>/admin/index.php?com=category&act=edit">Thêm mới</a>
+				</li>
+				<li>
 					<a href="<?= $config_url?>/admin/index.php?com=category&act=list">Tất cả danh mục</a>
 				</li>
 			</ul>
@@ -46,6 +48,5 @@
 				<li>3</li>
 			</ul>
 		</li>
-
 	</ul>
 </nav>

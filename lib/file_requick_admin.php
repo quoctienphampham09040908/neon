@@ -1,13 +1,18 @@
-<?php  
+<?php 
+
 global $view,$com,$db,$act,$type,$id;
-$com = $_REQUEST['com'];
-$act = $_REQUEST['act'];
-$type = $_REQUEST['type'];
-$id = $_REQUEST['id'];
+
+$com = isset($_REQUEST['com'])? $_REQUEST['com'] : NULL;
+$act = isset($_REQUEST['act'])? $_REQUEST['act'] : NULL;
+$type = isset($_REQUEST['type'])? $_REQUEST['type'] : NULL;
+$id = isset($_REQUEST['id'])? $_REQUEST['id'] : NULL;
+
+
 $db = new database($config['database']);
+$db->connect();
 $current_user = NULL;
  if (!isset($_COOKIE['admin'])) {
- 	login();
+  	login();
  }else{
     checkLogin();
         switch ($com) {
@@ -17,7 +22,7 @@ $current_user = NULL;
                     }
                break;
             default:
-              //$com = "index";
+              $com = "index";
                 break;
         }
 
@@ -27,6 +32,7 @@ $current_user = NULL;
 
 
 function login(){
+
     global $config_url,$com,$act,$view,$db;
     if ($com == 'user' && $act == 'login' && !isset($_COOKIE['admin'])) {
           include_once _controller.$com.".php";
@@ -36,7 +42,7 @@ function login(){
 }
 function checkLogin(){
 	global $config_url,$com,$act,$view,$db,$current_user;
-	$db->query("select * from tbl_user where MD5(user_name) = '{$_COOKIE['admin']}'");
+	$db->query("select * from table_user where MD5(user_name) = '{$_COOKIE['admin']}'");
   $current_user = $db->fetch_array();
 }
 

@@ -2,31 +2,31 @@
 
 
 
-if(!defined('_lib')) die("Error");
+// if(!defined('_lib')) die("Error");
 
-$http = "http://";
+// $http = "http://";
 
-if($_SERVER['HTTPS'] == "on")
+// if($_SERVER['HTTPS'] == "on")
 
-	$http = "https://";
+// 	$http = "https://";
 
-$config_url = $http.$_SERVER["SERVER_NAME"];
-
-
-
-if(count(explode($http."www.", $config_url)) > 1) {
-
-	header("HTTP/1.1 301 Moved Permanently"); 
-
-	header("Location: ".$http.str_replace($http."www.", "", $config_url));
-
-	exit(1);
-
-}
+// $config_url = $http.$_SERVER["SERVER_NAME"];
 
 
 
-$config_url .= "/neon";
+// if(count(explode($http."www.", $config_url)) > 1) {
+
+// 	header("HTTP/1.1 301 Moved Permanently"); 
+
+// 	header("Location: ".$http.str_replace($http."www.", "", $config_url));
+
+// 	exit(1);
+
+// }
+
+
+
+$config_url = "/neon";
 
 
 
@@ -36,9 +36,9 @@ $config['database']['username'] = 'root';
 
 $config['database']['password'] = '';
 
-$config['database']['database'] = 'neon';
+$config['database']['database'] = 'neon_db';
 
-$config['database']['refix'] = 'tbl_';
+$config['database']['refix'] = 'table_';
 
 
 
