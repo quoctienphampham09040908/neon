@@ -1,10 +1,10 @@
+
 <?php
-session_start();
+
 if (isset($_POST['user_name']) && isset($_POST['password']) && !isset($_COOKIE['admin'])) {
 	$pass = (md5($_POST['password']));
-    $db->query("select * from tbl_user where user_name = '{$_POST['user_name']}' and password like '{$pass}'");
+    $db->query("select * from table_user where user_name = '{$_POST['user_name']}' and password like '{$pass}'");
     $user = $db->fetch_array();
-    
      if (count($user) > 0) {
      	setcookie('admin', md5($user['user_name']), time() + (86400 * 30));
      	echo "<script>window.location.href='".$config_url."/admin/index.php?com=index'</script>";
@@ -19,6 +19,7 @@ if (isset($_POST['user_name']) && isset($_POST['password']) && !isset($_COOKIE['
 		     }
 			break;
 		case 'logout':
+		
 		      setcookie('admin', '', time() - 3600);
 		      unset($_COOKIE['admin']);
 		      echo "<script>window.location.href='".$config_url."/admin/index.php'</script>";
@@ -33,7 +34,7 @@ if (isset($_POST['user_name']) && isset($_POST['password']) && !isset($_COOKIE['
 	               }
 	           }else{
                     
-                    $db->query("select * from tbl_user where user_name = '{$_POST['user_name']}'");
+                    $db->query("select * from table_user where user_name = '{$_POST['user_name']}'");
                     $user = $db->fetch_array();
 
 	           	   if (!empty($_FILES['avatar']['name'])) {
@@ -64,5 +65,5 @@ if (isset($_POST['user_name']) && isset($_POST['password']) && !isset($_COOKIE['
 			# code...
 			break;
 	}
-}
+ }
 ?>

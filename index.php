@@ -1,20 +1,20 @@
-<?php 
+<?php
 
-  session_start();
-  date_default_timezone_set("Asia/Ho_Chi_Minh");
-  @define('_app', './app/');
-  @define('_view', './app/views/');
-  @define('_controller', './app/controllers/');
-  @define('_lib', './lib/');
-  @define('_storage', './storage/');
-  include_once _lib."config.php";
-  include_once _lib."functions.php";
-  include_once _lib."class.database.php";
-  
-  //include_once _lib."pagination.php";
-  include_once _lib."file_requick.php";
-   
-  
+session_start();
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+@define('_app', './app/');
+@define('_view', './app/views/');
+@define('_controller', './app/controllers/');
+@define('_lib', './lib/');
+@define('_storage', './storage/');
+include_once _lib . "config.php";
+include_once _lib . "class.database.php";
+
+include_once _lib . "file_requick.php";
+
+// include_once _lib."functions.php";
+
+//include_once _lib."pagination.php";
 
 ?>
 <!DOCTYPE html>
@@ -34,9 +34,9 @@
 </head>
 <body>
 
-  <?php include _view.'layouts/header.php'  ?>
-  <?php include _view.$view.'_tpl.php' ?>
-  <?php include _view.'layouts/footer.php'  ?>
+  <?php include _view . 'layouts/header.php'?>
+<!--   <?php //include _view.$view.'_tpl.php' ?>
+  <?php //include _view.'layouts/footer.php'  ?> -->
 </body>
 </html>
 <style>

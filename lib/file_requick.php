@@ -1,6 +1,10 @@
-<?php 
+<?php
+global $config, $com;
+$db = new Database($config['database']);
+$db->connect();
+$db->query("select * from table_category");
+global $view, $controller;
 
-global $view,$controller;
 if (isset($_REQUEST['param-1'])) {
 	switch ($_REQUEST['param-1']) {
 		case 'index':
@@ -10,11 +14,7 @@ if (isset($_REQUEST['param-1'])) {
 			$controller = "index";
 			break;
 	}
-}else{
+} else {
 	$controller = "index";
-	$view == "index";
+	$view = "index";
 }
-
-
-
-?>
