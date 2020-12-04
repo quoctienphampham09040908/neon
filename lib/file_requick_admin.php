@@ -29,11 +29,27 @@ $list_com = array(
       "slide" => array("title" => "Slide trang chủ", "act" => "list", "icon" => '<i class="fas fa-box-alt"></i>'),
 
     ),
-    "icon" => '',
+    "icon" => '<i class="fas fa-rocket"></i>',
     "list-type" => true
   ),
-  "user" => array(
+  "graphic" => array(
+    "title" => "Giao diện",
+    "type" => array(
+      "head" => array("title" => "Header", "act" => "edit", "icon" => '<i class="fas fa-star-of-life"></i>'),
+      "index" => array("title" => "Trang chủ", "act" => "edit", "icon" => '<i class="fas fa-pager"></i>'),
+      "footer" => array("title" => "Footer", "act" => "edit", "icon" => '<i class="fas fa-star-of-life"></i>'),
+    ),
+    "icon" => '<i class="fas fa-cube"></i>',
+    "list-type" => true
+  ),
+  "website" => array(
+    "title" => "Thông tin website",
+    "act" => "edit",
+    "icon" => '<i class="fas fa-info"></i>',
+    "list-type" => false
+  ),
 
+  "user" => array(
   )
 );
 // config list category end

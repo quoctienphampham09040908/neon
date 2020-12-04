@@ -1,18 +1,10 @@
-<div class="mt-5">
+<div >
 	<div class="panel-body-ad">
 		<div class="title">
-			<span class="text-uppercase"> Cập nhật </span>
+			<span class="text-uppercase"> Thông tin website </span>
 		</div>
 		<div>
 			<form action="<?= str_replace('act=edit', 'act=save', $_SERVER['REQUEST_URI']) ?>" method="post">
-				<div class="col-md-6 form-box" ?>
-				<label for="type_default">Danh mục </label>
-					<select class="form-control form-control-custom-admin rounded-0" name="type_default" id="type_default">
-						<?php foreach ($list_type as $key => &$value) { ?>
-							<option <?= $item['type'] == $value ? 'selected' : '' ?> value="<?= $value ?>"><?= $key ?></option>
-						<?php 	} ?>
-					</select>
-				</div>
 				<div class="claerfix"></div>
 				<div class="col-md-6 form-box" ?>
 					<?php foreach ($attr['default']['input'] as $key_attr => $r_attr) { ?>
