@@ -14,14 +14,10 @@ include_once _lib . "class.database.php";
 include_once _lib . "class.paging.php";
 include_once _lib . "function.php";
 include_once _lib . "file_requick_admin.php";
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,17 +27,22 @@ include_once _lib . "file_requick_admin.php";
     <script src="<?= getBaseURL(true) ?><?= ("app/assets/bootstrap4.5/dist/js/bootstrap.min.js") ?>"></script>
     <script src="<?= getBaseURL(true) ?>app/assets/js/fontawesome.min.js"></script>
     <script src="<?= getBaseURL(true) ?>app/assets/js/swiper/swiper.min.js"></script>
+
+    <script src="<?= getBaseURL(true) ?>app/assets/fancybox3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="<?= getBaseURL(true) ?>app/assets/ckeditor/ckeditor.js"></script>
+    <script src="<?= getBaseURL(true) ?>app/assets/ckfinder/ckfinder.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="<?= getBaseURL(true) ?>app/assets/js/script_admin.js"></script>
     <link rel="stylesheet" href="<?= getBaseURL(true) ?>app/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= getBaseURL(true) ?><?= ("app/assets/bootstrap4.5/dist/css/bootstrap.min.css") ?>">
     <link rel="stylesheet" href="<?= getBaseURL(true) ?>app/assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= getBaseURL(true) ?>app/assets/css/swiper/swiper.min.css">
     <link rel="stylesheet" href="<?= getBaseURL(true) ?>app/assets/fancybox3.5.7/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="<?= getBaseURL(true) ?>app/assets/css/style_admin.css">
-    <script src="<?= getBaseURL(true) ?>app/assets/fancybox3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script src="<?= getBaseURL(true) ?>app/assets/ckeditor/ckeditor.js"></script>
-    <script src="<?= getBaseURL(true) ?>app/assets/ckfinder/ckfinder.js"></script>
-    <script src="<?= getBaseURL(true) ?>app/assets/js/script_admin.js"></script>
+
 </head>
+
 <body>
     <!--  <div class="container">
   <?php //include _view.'layouts/header.php'  
@@ -96,6 +97,7 @@ include_once _lib . "file_requick_admin.php";
             }
         });
     }
+
     function removeCurrentImage(thumbnail_preview, elementId) {
         document.getElementById(elementId).value = "";
         document.getElementById(thumbnail_preview).src = "";
@@ -112,4 +114,5 @@ include_once _lib . "file_requick_admin.php";
         });
     });
 </script>
+
 </html>

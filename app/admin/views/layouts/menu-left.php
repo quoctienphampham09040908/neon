@@ -11,7 +11,7 @@
 			</button>
 			<div class="dropdown-menu w-100 rounded-0 justify-content-center flex-column mt-0" aria-labelledby="triggerId">
 				<a class="dropdown-item d-flex justify-content-center" href="#">Setting</a>
-				<a class="dropdown-item d-flex justify-content-center " href="./index.php?com=user&act=login">Logout</a>
+				<a class="dropdown-item d-flex justify-content-center " href="<?= $config_url.'/admin/' ?>index.php?com=user&act=login">Logout</a>
 			</div>
 		</div>
 	</div>
@@ -35,7 +35,7 @@
 					<?php if (is_array($r_com['type']) && !empty($r_com['type'])) { ?>
 						<?php foreach ($r_com['type'] as $type_item =>  $r_type) { ?>
 							<div class="card-body <?= $com == $com_name &&  $type_item == $type ? 'active' : '' ?>">
-								<a href="./index.php?com=<?= $com_name ?>&type=<?= $type_item ?>&act=<?= $r_type['act'] ?>"><?= $r_type['icon'] ?> <?= $r_type['title'] ?></a>
+								<a href="<?= $config_url.'/admin/' ?>index.php?com=<?= $com_name ?>&type=<?= $type_item ?>&act=<?= $r_type['act'] ?>"><?= $r_type['icon'] ?> <?= $r_type['title'] ?></a>
 							</div>
 						<?php } ?>
 					<?php	} ?>
@@ -45,7 +45,7 @@
 			<div class="card sidebar-card-category rounded-0">
 				<div class="card-header" role="tab" id="<?= $com_name ?>">
 					<h5 class="mb-0 ">
-						<a class=" d-flex w-100 <?= $com == $com_name ? 'active' : ' '  ?>" href="./index.php?com=<?= $com_name ?>&act=<?= $r_com['act'] ?>">
+						<a class=" d-flex w-100 <?= $com == $com_name ? 'active' : ' '  ?>" href="<?= $config_url.'/admin/' ?>index.php?com=<?= $com_name ?>&act=<?= $r_com['act'] ?>">
 							<span class="w-100 d-d-flex">
 								<?php echo $r_com['icon'] ?>
 								<?php echo $r_com['title'] ?>
@@ -58,3 +58,5 @@
 		<?php } ?>
 	<?php } ?>
 </div>
+
+

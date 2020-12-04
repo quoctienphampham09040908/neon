@@ -172,6 +172,9 @@ function setForeignKey($table)
     case 'option':
         $column = 'option_id';
         break;
+    case 'website':
+          $column = 'website_id';
+          break;
     default:
       # code...
       break;
