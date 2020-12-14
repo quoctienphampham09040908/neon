@@ -4,6 +4,26 @@ $type_filter = array("Trang" => array("type" => "page", "checked" => "checked"),
 $table = 'category';
 $table_translate = $table . '_translate';
 
+$attr['config'] = array(
+  "layout-menu-header" => array("type" => "position", "limit" => 6, "name" => "layout-header", "group" => "menu-center", "title" => "Menu chính"),
+  "layout-menu-header2" => array("type" => "position", "limit" => 6, "name" => "layout-header", "group" => "menu-center2", "title" => "Menu chính")
+);
+
+$layout = array();
+foreach ($attr['config'] as $layout_name => $attr) {
+  $layout[$layout_name] =
+    "<div class=\"position-graphic graphic-card\" >
+                <div class=\"graphic-card-head\">
+                    {$attr['title']}
+                </div>
+                <div data-group=\"{$attr["group"]}\"  data-name=\"{$attr["name"]}\"data-type=\"{$attr["type"]}\" 
+                  class=
+                \"sortable col-12 border-1\">
+                
+                </div>
+    </div>";
+}
+
 // category filter start
 $where = array();
 $where_type = array();
@@ -29,7 +49,33 @@ if ($where != '') {
 } else {
   $items = array();
 }
+if (isset($_REQUEST['act']) && $_REQUEST['act'] == "save") {
+  $obj = json_decode($_POST['position'], true);
+  $group = array_column($obj, 'name');
+  $group_name = array();
+  foreach ($obj as $r_obj) {
+    if (in_array($r_obj['name'], $group)) {
+      $group_name[$r_obj['name']][$r_obj['group']][] =  $r_obj;
+    }
+  }
 
+  foreach ($group_name as $name => $r_group) {
+    $table = str_replace('-', '_', $name);
+    $db->query("select * from table_{$table} ");
+    $layout_name = $db->fetch_array();
+    $value = json_encode($group_name[$name]);
+    if (is_array($layout_name) && !empty($layout_name)){
+
+      $db->query("update table_{$table} set value = '{$value}' where id = '{$layout_name['id']}' ");
+    }else {
+
+      $data['value'] = $value;
+      $db->setTable($table);
+      $db->insert($data);
+    }
+
+  }
+}
 // category filter ebd
 
 // switch ($type) {

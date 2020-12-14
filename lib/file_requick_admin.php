@@ -50,6 +50,7 @@ $list_com = array(
   ),
 
   "user" => array(
+
   )
 );
 // config list category end

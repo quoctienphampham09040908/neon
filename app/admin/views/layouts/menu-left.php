@@ -2,8 +2,8 @@
 	<div class="w-100">
 		<div class="dropdown open">
 			<button class="not-focusable btn current-user-button-toggle  dropdown-toggle d-flex" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<div>
-					<img src="../" alt="">
+				<div class="avatar__menuLeft">
+					<img src="../app/assets/image/sheep_admin.jpg" alt="">
 				</div>
 				<span class="current-user-name text-uppercase">
 					<?php echo $current_user['user_name'] ?>
@@ -11,11 +11,13 @@
 			</button>
 			<div class="dropdown-menu w-100 rounded-0 justify-content-center flex-column mt-0" aria-labelledby="triggerId">
 				<a class="dropdown-item d-flex justify-content-center" href="#">Setting</a>
-				<a class="dropdown-item d-flex justify-content-center " href="<?= $config_url.'/admin/' ?>index.php?com=user&act=login">Logout</a>
+				<a class="dropdown-item d-flex justify-content-center " href="<?= $config_url.'/admin/' ?>index.php?com=user&act=logout">Logout</a>
 			</div>
 		</div>
 	</div>
-	<?php foreach ($list_com as $com_name =>  $r_com) { ?>
+	<?php foreach ($list_com as $com_name =>  $r_com) {
+		 if( !is_array($r_com) || empty($r_com)) continue;
+		?>
 		<?php if ($r_com['list-type']) { ?>
 			<div class="card sidebar-card-category rounded-0">
 				<div class="card-header" role="tab" id="<?= $com_name ?>">
