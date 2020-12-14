@@ -19,7 +19,8 @@
 		<div class="col-md-6 col-12 d-flex">
 			<div class="info-support d-flex flex-column text-center align-item-center w-100">
 				<span class="telephone-support">
-					CSKH: 0939432055
+					CSKH: 
+					<!-- 0939432055 -->
 				</span>
 				<span class="info-version-page">
 					Số phiên bản: v1.0
